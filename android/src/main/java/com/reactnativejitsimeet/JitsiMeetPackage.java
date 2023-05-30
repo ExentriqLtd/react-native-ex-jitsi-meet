@@ -12,7 +12,9 @@ import java.util.List;
 public class JitsiMeetPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        List<ViewManager> views = new ArrayList<>();
+        views.add(new ExJitsiMeetViewManager());
+        return views;
     }
 
     @Override

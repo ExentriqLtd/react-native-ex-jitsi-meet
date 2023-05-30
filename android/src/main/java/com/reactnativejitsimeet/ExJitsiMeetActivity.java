@@ -55,7 +55,6 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
         if (!(context instanceof Activity)) {
             intent.setFlags(268435456);
         }
-
         context.startActivity(intent);
     }
 
@@ -102,6 +101,8 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     public void finish() {
+        Log.d("ExJitsiMeetActivity::", "start finish");
+
         this.leave();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         super.finish();
@@ -117,6 +118,8 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     public void join(JitsiMeetConferenceOptions options) {
+        Log.d("ExJitsiMeetActivity::", "start join");
+
         if (this.jitsiView != null) {
             this.jitsiView.join(options);
         } else {
@@ -125,6 +128,8 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     protected void leave() {
+        Log.d("ExJitsiMeetActivity::", "start leave");
+
         Intent hangupBroadcastIntent = BroadcastIntentHelper.buildHangUpIntent();
         LocalBroadcastManager.getInstance(this.getApplicationContext()).sendBroadcast(hangupBroadcastIntent);
     }
@@ -153,19 +158,27 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     protected void onConferenceJoined(HashMap<String, Object> extraData) {
+        Log.d("ExJitsiMeetActivity::", "start onConferenceJoined");
+
         JitsiMeetLogger.i("Conference joined: " + extraData, new Object[0]);
         JitsiMeetOngoingConferenceService.launch(this, extraData);
     }
 
     protected void onConferenceTerminated(HashMap<String, Object> extraData) {
+        Log.d("ExJitsiMeetActivity::", "start onConferenceTerminated");
+
         JitsiMeetLogger.i("Conference terminated: " + extraData, new Object[0]);
     }
 
     protected void onConferenceWillJoin(HashMap<String, Object> extraData) {
+        Log.d("ExJitsiMeetActivity::", "start onConferenceWillJoin");
+
         JitsiMeetLogger.i("Conference will join: " + extraData, new Object[0]);
     }
 
     protected void onParticipantJoined(HashMap<String, Object> extraData) {
+        Log.d("ExJitsiMeetActivity::", "start onParticipantJoined");
+
         try {
             JitsiMeetLogger.i("Participant joined: ", new Object[]{extraData});
         } catch (Exception var3) {
@@ -175,6 +188,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     protected void onParticipantLeft(HashMap<String, Object> extraData) {
+        Log.d("ExJitsiMeetActivity::", "start onParticipantLeft");
         try {
             JitsiMeetLogger.i("Participant left: ", new Object[]{extraData});
         } catch (Exception var3) {
@@ -238,6 +252,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     private void onBroadcastReceived(Intent intent) {
+        Log.d("ExJitsiMeetActivity::", "start onBroadcastReceived");
         if (intent != null) {
             BroadcastEvent event = new BroadcastEvent(intent);
             switch (event.getType()) {
