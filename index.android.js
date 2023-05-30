@@ -4,8 +4,7 @@
 
 import { NativeModules, requireNativeComponent } from 'react-native';
 
-export const JitsiMeetView = requireNativeComponent('RNJitsiMeetView');
-export const JitsiMeetModule = NativeModules.RNJitsiMeetModule
+export const JitsiMeetModule = NativeModules.JitsiMeetModule
 const call = JitsiMeetModule.call;
 const endCall = JitsiMeetModule.endCall;
 JitsiMeetModule.call = (url, userInfo, meetOptions, meetFeatureFlags) => {
@@ -18,5 +17,3 @@ JitsiMeetModule.endCall = () => {
   endCall();
 }
 export default JitsiMeetModule;
-
-
