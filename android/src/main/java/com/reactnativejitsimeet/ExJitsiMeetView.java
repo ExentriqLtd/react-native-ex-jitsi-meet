@@ -1,11 +1,51 @@
 package com.reactnativejitsimeet;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
 
-import org.jitsi.meet.sdk.JitsiMeetView;
+import androidx.annotation.NonNull;
 
-public class ExJitsiMeetView extends JitsiMeetView {
-    public ExJitsiMeetView(Context context) {
-        super(context);
+import com.facebook.react.modules.core.PermissionListener;
+import com.reactnativejitsimeet.sdk.JitsiMeetActivityInterface;
+import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
+import com.reactnativejitsimeet.sdk.JitsiMeetView;
+
+public class ExJitsiMeetView extends View implements JitsiMeetActivityInterface {
+    JitsiMeetView view;
+    public ExJitsiMeetView(Activity activity) {
+        super(activity);
+        Log.d("ExJitsiMeetView", "onContruct");
+        view = new JitsiMeetView(activity);
+        JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                .setRoom("https://meet.jit.si/test123")
+                .build();
+        view.join(options);
+    }
+
+    @Override
+    public int checkPermission(String s, int i, int i1) {
+        return 0;
+    }
+
+    @Override
+    public int checkSelfPermission(String s) {
+        return 0;
+    }
+
+    @Override
+    public boolean shouldShowRequestPermissionRationale(String s) {
+        return false;
+    }
+
+    @Override
+    public void requestPermissions(String[] strings, int i, PermissionListener permissionListener) {
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
     }
 }

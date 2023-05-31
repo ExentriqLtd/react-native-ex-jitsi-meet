@@ -1,8 +1,10 @@
 package com.reactnativejitsimeet;
+import android.app.Activity;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
-public class ExJitsiMeetViewManager extends SimpleViewManager<ExJitsiMeetView> {
+
+public class ExJitsiMeetViewManager extends SimpleViewManager<ExJitsiMeetView>  {
     public static final String REACT_CLASS = "ExJitsiMeetView";
 
     @Override
@@ -12,6 +14,7 @@ public class ExJitsiMeetViewManager extends SimpleViewManager<ExJitsiMeetView> {
 
     @Override
     protected ExJitsiMeetView createViewInstance(ThemedReactContext reactContext) {
-        return new ExJitsiMeetView(reactContext);
+        Activity currentActivity = reactContext.getCurrentActivity();
+        return new ExJitsiMeetView(currentActivity);
     }
 }

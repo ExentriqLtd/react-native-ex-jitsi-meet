@@ -1,36 +1,37 @@
 package com.reactnativejitsimeet;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import android.annotation.SuppressLint;
 
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactInstanceManagerBuilder;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.modules.core.PermissionListener;
 import java.util.HashMap;
+import android.net.Uri;
 
-import org.jitsi.meet.sdk.BroadcastEvent;
-import org.jitsi.meet.sdk.BroadcastEvent.Type;
-import org.jitsi.meet.sdk.BroadcastIntentHelper;
-import org.jitsi.meet.sdk.JitsiMeetActivity;
-import org.jitsi.meet.sdk.JitsiMeetActivityDelegate;
-import org.jitsi.meet.sdk.JitsiMeetActivityInterface;
-import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
-import org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService;
-import org.jitsi.meet.sdk.JitsiMeetView;
-import org.jitsi.meet.sdk.R.id;
-import org.jitsi.meet.sdk.R.layout;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.R;
+import com.reactnativejitsimeet.sdk.BroadcastEvent;
+import com.reactnativejitsimeet.sdk.BroadcastIntentHelper;
+import com.reactnativejitsimeet.sdk.JitsiMeetActivity;
+import com.reactnativejitsimeet.sdk.JitsiMeetActivityDelegate;
+import com.reactnativejitsimeet.sdk.JitsiMeetActivityInterface;
+import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
+import com.reactnativejitsimeet.sdk.JitsiMeetOngoingConferenceService;
+import com.reactnativejitsimeet.sdk.JitsiMeetView;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import android.os.Bundle;
+import android.content.res.Configuration;
+import android.app.Activity;
+import android.os.Parcelable;
+import android.content.Intent;
+import android.content.Context;
+import android.content.BroadcastReceiver;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetActivityInterface {
     protected static final String TAG = JitsiMeetActivity.class.getSimpleName();
@@ -53,7 +54,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
         intent.setAction("org.jitsi.meet.CONFERENCE");
         intent.putExtra("JitsiMeetConferenceOptions", options);
         if (!(context instanceof Activity)) {
-            intent.setFlags(268435456);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         context.startActivity(intent);
     }
@@ -240,7 +241,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
 
     private void registerForBroadcastMessages() {
         IntentFilter intentFilter = new IntentFilter();
-        BroadcastEvent.Type[] var2 = Type.values();
+        BroadcastEvent.Type[] var2 = BroadcastEvent.Type.values();
         int var3 = var2.length;
 
         for(int var4 = 0; var4 < var3; ++var4) {

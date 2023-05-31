@@ -9,12 +9,13 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
-import org.jitsi.meet.sdk.JitsiMeet;
-import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
-import org.jitsi.meet.sdk.JitsiMeetUserInfo;
+import com.reactnativejitsimeet.sdk.JitsiMeet;
+import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
+import com.reactnativejitsimeet.sdk.JitsiMeetUserInfo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class JitsiMeetModule extends ReactContextBaseJavaModule {
 
@@ -49,6 +50,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
                 }
             }
             URL _url = new URL(domain);
+            System.out.println("call::::URL::" + _url.toString());
             // Somewhere early in your app.
             JitsiMeetConferenceOptions defaultOptions
                     = new JitsiMeetConferenceOptions.Builder()
