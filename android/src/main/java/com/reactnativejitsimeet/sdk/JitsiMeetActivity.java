@@ -14,6 +14,8 @@ import com.reactnativejitsimeet.R;
 import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.content.res.Configuration;
 import android.app.Activity;
@@ -22,6 +24,8 @@ import android.content.Intent;
 import android.content.Context;
 import android.content.BroadcastReceiver;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.jitsi.meet.sdk.JitsiMeetActivityInterface;
 
 public class JitsiMeetActivity extends AppCompatActivity implements JitsiMeetActivityInterface
 {
@@ -44,7 +48,7 @@ public class JitsiMeetActivity extends AppCompatActivity implements JitsiMeetAct
         intent.setAction("org.jitsi.meet.CONFERENCE");
         intent.putExtra("JitsiMeetConferenceOptions", (Parcelable)options);
         if (!(context instanceof Activity)) {
-            intent.setFlags(268435456);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         context.startActivity(intent);
     }
@@ -85,7 +89,9 @@ public class JitsiMeetActivity extends AppCompatActivity implements JitsiMeetAct
         this.leave();
         this.jitsiView = null;
         if (AudioModeModule.useConnectionService()) {
-            ConnectionService.abortConnections();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ConnectionService.abortConnections();
+            }
         }
         JitsiMeetOngoingConferenceService.abort((Context)this);
         LocalBroadcastManager.getInstance((Context)this).unregisterReceiver(this.broadcastReceiver);

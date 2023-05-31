@@ -12,7 +12,6 @@ import android.net.Uri;
 import com.reactnativejitsimeet.R;
 import com.reactnativejitsimeet.sdk.BroadcastEvent;
 import com.reactnativejitsimeet.sdk.BroadcastIntentHelper;
-import com.reactnativejitsimeet.sdk.JitsiMeetActivity;
 import com.reactnativejitsimeet.sdk.JitsiMeetActivityDelegate;
 import com.reactnativejitsimeet.sdk.JitsiMeetActivityInterface;
 import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
@@ -34,7 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetActivityInterface {
-    protected static final String TAG = JitsiMeetActivity.class.getSimpleName();
+    protected static final String TAG = ExJitsiMeetActivity.class.getSimpleName();
     private static final String ACTION_JITSI_MEET_CONFERENCE = "org.jitsi.meet.CONFERENCE";
     private static final String JITSI_MEET_CONFERENCE_OPTIONS = "JitsiMeetConferenceOptions";
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -50,7 +49,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
     }
 
     public static void launch(Context context, JitsiMeetConferenceOptions options) {
-        Intent intent = new Intent(context, JitsiMeetActivity.class);
+        Intent intent = new Intent(context, ExJitsiMeetActivity.class);
         intent.setAction("org.jitsi.meet.CONFERENCE");
         intent.putExtra("JitsiMeetConferenceOptions", options);
         if (!(context instanceof Activity)) {

@@ -1,6 +1,5 @@
 package com.reactnativejitsimeet;
 
-import android.app.Activity;
 import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
@@ -10,12 +9,12 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
 import com.reactnativejitsimeet.sdk.JitsiMeet;
+import com.reactnativejitsimeet.sdk.JitsiMeetActivity;
 import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
 import com.reactnativejitsimeet.sdk.JitsiMeetUserInfo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Logger;
 
 public class JitsiMeetModule extends ReactContextBaseJavaModule {
 
@@ -90,7 +89,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
                     .setFeatureFlag("welcomepage.enabled", meetFeatureFlags.hasKey("welcomePageEnabled") ?meetFeatureFlags.getBoolean("welcomePageEnabled") : false)
                     .setFeatureFlag("prejoinpage.enabled", meetFeatureFlags.hasKey("prejoinPageEnabled") ?meetFeatureFlags.getBoolean("prejoinPageEnabled") : false)
                     .build();
-            ExJitsiMeetActivity.launch(this.getReactApplicationContext(), options);
+            JitsiMeetActivity.launch(this.getReactApplicationContext(), options);
             callBack.invoke("ExJitsiMeetActivity", "CONFERENCE_LAUNCH");
         } catch (Exception e) {
             Log.d("Error::", e.getMessage());
