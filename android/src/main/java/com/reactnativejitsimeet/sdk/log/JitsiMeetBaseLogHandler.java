@@ -1,8 +1,7 @@
-// 
+package com.reactnativejitsimeet.sdk.log;//
 // These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
 // 
 
-package org.jitsi.meet.sdk.log;
 
 import java.text.MessageFormat;
 import android.util.Log;

@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.UiThreadUtil;

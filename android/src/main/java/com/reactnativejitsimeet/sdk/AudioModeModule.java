@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import java.util.concurrent.Executors;
 import android.os.Build;
@@ -12,7 +12,7 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import java.util.Iterator;
 import com.facebook.react.bridge.WritableArray;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Arguments;

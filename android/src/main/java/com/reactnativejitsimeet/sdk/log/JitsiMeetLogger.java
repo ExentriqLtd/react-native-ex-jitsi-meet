@@ -1,8 +1,10 @@
-// 
 // These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
 // 
+package com.reactnativejitsimeet.sdk.log;//
 
-package org.jitsi.meet.sdk.log;
+
+import org.jitsi.meet.sdk.log.JitsiMeetBaseLogHandler;
+import org.jitsi.meet.sdk.log.JitsiMeetDefaultLogHandler;
 
 import timber.log.Timber;
 

@@ -1,15 +1,17 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import android.content.IntentFilter;
 import android.annotation.SuppressLint;
 import com.facebook.react.modules.core.PermissionListener;
 import java.util.HashMap;
 import android.net.Uri;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+
+import com.reactnativejitsimeet.R;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.os.Bundle;

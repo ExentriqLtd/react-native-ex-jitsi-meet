@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import android.telecom.CallAudioState;
 import com.facebook.react.bridge.WritableNativeMap;
@@ -19,7 +19,7 @@ import android.telecom.ConnectionRequest;
 import android.telecom.PhoneAccountHandle;
 import com.facebook.react.bridge.ReadableMap;
 import android.telecom.DisconnectCause;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import android.os.Build;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import androidx.annotation.RequiresApi;
 public class ConnectionService extends android.telecom.ConnectionService
 {
     static final String TAG = "JitsiConnectionService";
-    static final String EXTRA_PHONE_ACCOUNT_HANDLE = "org.jitsi.meet.sdk.connection_service.PHONE_ACCOUNT_HANDLE";
+    static final String EXTRA_PHONE_ACCOUNT_HANDLE = "com.reactnativejitsimeet.sdk.connection_service.PHONE_ACCOUNT_HANDLE";
     private static final Map<String, ConnectionImpl> connections;
     private static final HashMap<String, Promise> startCallPromises;
     
@@ -115,7 +115,7 @@ public class ConnectionService extends android.telecom.ConnectionService
         connection.setAudioModeIsVoip(true);
         connection.setVideoState(request.getVideoState());
         final Bundle moreExtras = new Bundle();
-        moreExtras.putParcelable("org.jitsi.meet.sdk.connection_service.PHONE_ACCOUNT_HANDLE", (Parcelable)Objects.requireNonNull((Parcelable)request.getAccountHandle(), "accountHandle"));
+        moreExtras.putParcelable("com.reactnativejitsimeet.sdk.connection_service.PHONE_ACCOUNT_HANDLE", (Parcelable)Objects.requireNonNull((Parcelable)request.getAccountHandle(), "accountHandle"));
         connection.putExtras(moreExtras);
         addConnection(connection);
         final Promise startCallPromise = unregisterStartCallPromise(connection.getCallUUID());
@@ -231,7 +231,7 @@ public class ConnectionService extends android.telecom.ConnectionService
         }
         
         private PhoneAccountHandle getPhoneAccountHandle() {
-            return (PhoneAccountHandle)this.getExtras().getParcelable("org.jitsi.meet.sdk.connection_service.PHONE_ACCOUNT_HANDLE");
+            return (PhoneAccountHandle)this.getExtras().getParcelable("com.reactnativejitsimeet.sdk.connection_service.PHONE_ACCOUNT_HANDLE");
         }
         
         public String toString() {

@@ -1,11 +1,11 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import com.facebook.react.ReactInstanceManager;
 import android.content.Intent;
 import android.app.Activity;

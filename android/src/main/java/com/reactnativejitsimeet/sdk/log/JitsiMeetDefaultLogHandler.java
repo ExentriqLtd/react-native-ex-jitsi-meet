@@ -1,11 +1,11 @@
-// 
+package com.reactnativejitsimeet.sdk.log;//
 // These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
 // 
 
-package org.jitsi.meet.sdk.log;
 
 import android.util.Log;
 import org.jetbrains.annotations.NotNull;
+import org.jitsi.meet.sdk.log.JitsiMeetBaseLogHandler;
 
 public class JitsiMeetDefaultLogHandler extends JitsiMeetBaseLogHandler
 {

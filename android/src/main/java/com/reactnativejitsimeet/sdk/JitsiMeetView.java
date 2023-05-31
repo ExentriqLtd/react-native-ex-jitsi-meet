@@ -1,12 +1,12 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import com.rnimmersive.RNImmersiveModule;
 import android.app.Activity;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import android.view.View;
 import android.util.AttributeSet;
 import androidx.annotation.NonNull;
@@ -58,9 +58,9 @@ public class JitsiMeetView extends FrameLayout
         return result;
     }
     
-    public JitsiMeetView(@NonNull final Context context) {
-        super(context);
-        this.initialize(context);
+    public JitsiMeetView(@NonNull final Activity activity) {
+        super(activity);
+        this.initialize(activity);
     }
     
     public JitsiMeetView(final Context context, final AttributeSet attrs) {
@@ -116,9 +116,6 @@ public class JitsiMeetView extends FrameLayout
     }
     
     private void initialize(@NonNull final Context context) {
-        if (!(context instanceof JitsiMeetActivityInterface)) {
-            throw new RuntimeException("Enclosing Activity must implement JitsiMeetActivityInterface");
-        }
         this.setBackgroundColor(-15658735);
         ReactInstanceManagerHolder.initReactInstanceManager((Activity)context);
     }

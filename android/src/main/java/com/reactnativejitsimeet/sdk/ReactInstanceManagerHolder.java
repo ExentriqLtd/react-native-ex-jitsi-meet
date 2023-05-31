@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import org.webrtc.VideoEncoderFactory;
 import org.webrtc.VideoDecoderFactory;
@@ -19,6 +19,8 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import androidx.annotation.Nullable;
 import com.facebook.react.jscexecutor.JSCExecutorFactory;
 import java.lang.reflect.Constructor;
+
+import android.os.Build;
 import android.util.Log;
 import org.wonday.orientation.OrientationPackage;
 import com.horcrux.svg.SvgPackage;
@@ -49,7 +51,7 @@ import com.facebook.react.uimanager.ViewManager;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.jitsi.meet.sdk.net.NAT64AddrInfoModule;
+import com.reactnativejitsimeet.sdk.net.NAT64AddrInfoModule;
 import org.devio.rn.splashscreen.SplashScreenModule;
 import com.facebook.react.bridge.NativeModule;
 import java.util.List;
@@ -64,7 +66,9 @@ class ReactInstanceManagerHolder
     private static List<NativeModule> createNativeModules(final ReactApplicationContext reactContext) {
         final List<NativeModule> nativeModules = new ArrayList<NativeModule>(Arrays.asList((NativeModule)new AndroidSettingsModule(reactContext), (NativeModule)new AppInfoModule(reactContext), (NativeModule)new AudioModeModule(reactContext), (NativeModule)new DropboxModule(reactContext), (NativeModule)new ExternalAPIModule(reactContext), (NativeModule)new JavaScriptSandboxModule(reactContext), (NativeModule)new LocaleDetector(reactContext), (NativeModule)new LogBridgeModule(reactContext), (NativeModule)new SplashScreenModule(reactContext), (NativeModule)new PictureInPictureModule(reactContext), (NativeModule)new ProximityModule(reactContext), (NativeModule)new NAT64AddrInfoModule(reactContext)));
         if (AudioModeModule.useConnectionService()) {
-            nativeModules.add((NativeModule)new RNConnectionService(reactContext));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                nativeModules.add((NativeModule)new RNConnectionService(reactContext));
+            }
         }
         return nativeModules;
     }
@@ -74,21 +78,47 @@ class ReactInstanceManagerHolder
     }
     
     static List<ReactPackage> getReactNativePackages() {
-        final List<ReactPackage> packages = new ArrayList<ReactPackage>(Arrays.asList((ReactPackage)new AsyncStoragePackage(), (ReactPackage)new BackgroundTimerPackage(), (ReactPackage)new RNCalendarEventsPackage(), (ReactPackage)new KCKeepAwakePackage(), (ReactPackage)new MainReactPackage(), (ReactPackage)new ClipboardPackage(), (ReactPackage)new NetInfoPackage(), (ReactPackage)new PagerViewPackage(), (ReactPackage)new PerformancePackage(), (ReactPackage)new ReactSliderPackage(), (ReactPackage)new ReactVideoPackage(), (ReactPackage)new RNCWebViewPackage(), (ReactPackage)new RNDefaultPreferencePackage(), (ReactPackage)new RNDeviceInfo(), (ReactPackage)new WebRTCModulePackage(), (ReactPackage)new RNGestureHandlerPackage(), (ReactPackage)new RNGetRandomValuesPackage(), (ReactPackage)new RNImmersivePackage(), (ReactPackage)new RNScreensPackage(), (ReactPackage)new RNSoundPackage(), (ReactPackage)new SafeAreaContextPackage(), (ReactPackage)new SvgPackage(), (ReactPackage)new OrientationPackage(), (ReactPackage)new ReactPackageAdapter() {
-            @Override
-            public List<NativeModule> createNativeModules(final ReactApplicationContext reactContext) {
-                return createNativeModules(reactContext);
-            }
-            
-            @Override
-            public List<ViewManager> createViewManagers(final ReactApplicationContext reactContext) {
-                return createViewManagers(reactContext);
-            }
-        }));
+        final List<ReactPackage> packages = new ArrayList<ReactPackage>(
+                Arrays.asList(
+                        new AsyncStoragePackage(),
+                        new BackgroundTimerPackage(),
+                        new RNCalendarEventsPackage(),
+                        new KCKeepAwakePackage(),
+                        new MainReactPackage(),
+                        new ClipboardPackage(),
+                        new NetInfoPackage(),
+                        new PagerViewPackage(),
+                        new PerformancePackage(),
+                        new ReactSliderPackage(),
+                        new ReactVideoPackage(),
+                        new RNCWebViewPackage(),
+                        new RNDefaultPreferencePackage(),
+                        new RNDeviceInfo(),
+                        new WebRTCModulePackage(),
+                        new RNGestureHandlerPackage(),
+                        new RNGetRandomValuesPackage(),
+                        new RNImmersivePackage(),
+                        new RNScreensPackage(),
+                        new RNSoundPackage(),
+                        new SafeAreaContextPackage(),
+                        new SvgPackage(),
+                        new OrientationPackage(),
+                        new ReactPackageAdapter() {
+                           @Override
+                            public List<NativeModule> createNativeModules(final ReactApplicationContext reactContext) {
+                                return super.createNativeModules(reactContext);
+                            }
+
+                            @Override
+                            public List<ViewManager> createViewManagers(final ReactApplicationContext reactContext) {
+                                return super.createViewManagers(reactContext);
+                            }
+                        })
+        );
         try {
             final Class<?> amplitudePackageClass = Class.forName("com.amplitude.reactnative.AmplitudeReactNativePackage");
             final Constructor constructor = amplitudePackageClass.getConstructor((Class<?>[])new Class[0]);
-            packages.add(constructor.newInstance(new Object[0]));
+            packages.add((ReactPackage) constructor.newInstance(new Object[0]));
         }
         catch (Exception e) {
             Log.d(ReactInstanceManagerHolder.TAG, "Not loading AmplitudeReactNativePackage");
@@ -96,7 +126,7 @@ class ReactInstanceManagerHolder
         try {
             final Class<?> giphyPackageClass = Class.forName("com.giphyreactnativesdk.GiphyReactNativeSdkPackage");
             final Constructor constructor = giphyPackageClass.getConstructor((Class<?>[])new Class[0]);
-            packages.add(constructor.newInstance(new Object[0]));
+            packages.add((ReactPackage) constructor.newInstance(new Object[0]));
         }
         catch (Exception e) {
             Log.d(ReactInstanceManagerHolder.TAG, "Not loading GiphyReactNativeSdkPackage");
@@ -104,7 +134,7 @@ class ReactInstanceManagerHolder
         try {
             final Class<?> googlePackageClass = Class.forName("com.reactnativegooglesignin.RNGoogleSigninPackage");
             final Constructor constructor = googlePackageClass.getConstructor((Class<?>[])new Class[0]);
-            packages.add(constructor.newInstance(new Object[0]));
+            packages.add((ReactPackage) constructor.newInstance(new Object[0]));
         }
         catch (Exception e) {
             Log.d(ReactInstanceManagerHolder.TAG, "Not loading RNGoogleSignInPackage");

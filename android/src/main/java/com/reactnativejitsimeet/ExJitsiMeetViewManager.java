@@ -1,5 +1,7 @@
 package com.reactnativejitsimeet;
+
 import android.app.Activity;
+
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 

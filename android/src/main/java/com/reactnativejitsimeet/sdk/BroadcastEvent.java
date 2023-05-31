@@ -1,12 +1,12 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import android.os.Bundle;
 import java.util.Iterator;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import android.content.Intent;
 import com.facebook.react.bridge.ReadableMap;
 import java.util.HashMap;
@@ -18,12 +18,12 @@ public class BroadcastEvent
     private final HashMap<String, Object> data;
     
     public BroadcastEvent(final String name, final ReadableMap data) {
-        this.type = buildTypeFromName(name);
+        this.type = Type.buildTypeFromName(name);
         this.data = (HashMap<String, Object>)data.toHashMap();
     }
     
     public BroadcastEvent(final Intent intent) {
-        this.type = buildTypeFromAction(intent.getAction());
+        this.type = Type.buildTypeFromAction(intent.getAction());
         this.data = buildDataFromBundle(intent.getExtras());
     }
     

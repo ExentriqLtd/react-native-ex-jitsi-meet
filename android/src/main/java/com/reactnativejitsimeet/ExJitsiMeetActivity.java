@@ -62,8 +62,8 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(layout.activity_jitsi_meet);
-        this.jitsiView = (JitsiMeetView)this.findViewById(id.jitsiView);
+        this.setContentView(R.layout.activity_jitsi_meet);
+        this.jitsiView = (JitsiMeetView)this.findViewById(R.id.jitsiView);
         this.registerForBroadcastMessages();
         if (!this.extraInitialize()) {
             this.initialize();
@@ -254,6 +254,7 @@ public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetA
 
     private void onBroadcastReceived(Intent intent) {
         Log.d("ExJitsiMeetActivity::", "start onBroadcastReceived");
+
         if (intent != null) {
             BroadcastEvent event = new BroadcastEvent(intent);
             switch (event.getType()) {

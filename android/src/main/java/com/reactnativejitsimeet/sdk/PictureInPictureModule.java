@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Promise;
@@ -10,7 +10,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.util.Rational;
 import android.app.PictureInPictureParams;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import java.util.HashMap;
 import java.util.Map;
 import android.os.Build;

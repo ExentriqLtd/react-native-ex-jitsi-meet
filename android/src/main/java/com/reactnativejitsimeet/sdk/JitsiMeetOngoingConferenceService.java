@@ -1,17 +1,16 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import android.app.NotificationManager;
 import android.os.IBinder;
 import android.app.Notification;
-import android.content.BroadcastReceiver;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.content.IntentFilter;
 import android.content.ComponentName;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import android.os.Build;
 import java.io.Serializable;
 import android.os.Bundle;
@@ -99,7 +98,7 @@ public class JitsiMeetOngoingConferenceService extends Service implements Ongoin
                 JitsiMeetLogger.w(JitsiMeetOngoingConferenceService.TAG + " Couldn't start service, notification is null", new Object[0]);
             }
             else {
-                final NotificationManager notificationManager = (NotificationManager)this.getSystemService("notification");
+                final NotificationManager notificationManager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(OngoingNotification.NOTIFICATION_ID, notification);
             }
         }
@@ -126,7 +125,7 @@ public class JitsiMeetOngoingConferenceService extends Service implements Ongoin
                 }
             }
         }
-        return 2;
+        return Service.START_NOT_STICKY;
     }
     
     public void onCurrentConferenceChanged(final String conferenceUrl) {
@@ -140,7 +139,7 @@ public class JitsiMeetOngoingConferenceService extends Service implements Ongoin
     private Boolean tryParseIsAudioMuted(final Intent intent) {
         try {
             final HashMap<String, Object> extraData = (HashMap<String, Object>)intent.getBundleExtra("extraDataBundleKey").getSerializable("extraDataKey");
-            return Boolean.parseBoolean(extraData.get("isAudioMuted"));
+            return Boolean.parseBoolean((String) extraData.get("isAudioMuted"));
         }
         catch (Exception ex) {
             return null;
@@ -187,7 +186,7 @@ public class JitsiMeetOngoingConferenceService extends Service implements Ongoin
                 JitsiMeetLogger.w(JitsiMeetOngoingConferenceService.TAG + " Couldn't update service, notification is null", new Object[0]);
             }
             else {
-                final NotificationManager notificationManager = (NotificationManager)JitsiMeetOngoingConferenceService.this.getSystemService("notification");
+                final NotificationManager notificationManager = (NotificationManager)JitsiMeetOngoingConferenceService.this.getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(OngoingNotification.NOTIFICATION_ID, notification);
                 JitsiMeetLogger.i(JitsiMeetOngoingConferenceService.TAG + " audio muted changed", new Object[0]);
             }

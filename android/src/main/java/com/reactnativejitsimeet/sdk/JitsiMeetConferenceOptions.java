@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import java.io.Serializable;
 import android.os.Parcel;
@@ -40,16 +40,16 @@ public class JitsiMeetConferenceOptions implements Parcelable
         return this.userInfo;
     }
     
-    private JitsiMeetConferenceOptions() {
+    private JitsiMeetConferenceOptions(Parcel in, Object o) {
     }
     
     private JitsiMeetConferenceOptions(final Parcel in) {
-        this.serverURL = (URL)in.readSerializable();
+       /* this.serverURL = (URL)in.readSerializable();
         this.room = in.readString();
         this.token = in.readString();
         this.config = in.readBundle();
         this.featureFlags = in.readBundle();
-        this.userInfo = new JitsiMeetUserInfo(in.readBundle());
+        this.userInfo = new JitsiMeetUserInfo(in.readBundle());*/
     }
     
     Bundle asProps() {
@@ -201,7 +201,7 @@ public class JitsiMeetConferenceOptions implements Parcelable
         }
         
         public JitsiMeetConferenceOptions build() {
-            final JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions((JitsiMeetConferenceOptions$1)null);
+            final JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions(null);
             options.serverURL = this.serverURL;
             options.room = this.room;
             options.token = this.token;

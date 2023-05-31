@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.media.AudioDeviceInfo;
 import java.util.Set;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import java.util.HashSet;
 import android.media.AudioDeviceCallback;
 import android.media.AudioManager;

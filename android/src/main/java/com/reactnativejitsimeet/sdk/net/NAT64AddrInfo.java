@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk.net;
+package com.reactnativejitsimeet.sdk.net;
 
 import java.net.UnknownHostException;
 import java.net.InetAddress;

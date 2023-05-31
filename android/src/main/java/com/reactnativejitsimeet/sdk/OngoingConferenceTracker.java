@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import java.util.Iterator;
 import com.facebook.react.bridge.ReadableMap;
@@ -20,7 +20,7 @@ class OngoingConferenceTracker
     private String currentConference;
     
     public OngoingConferenceTracker() {
-        this.listeners = (Collection<OngoingConferenceListener>)Collections.synchronizedSet(new HashSet<Object>());
+        this.listeners = Collections.synchronizedSet(new HashSet<OngoingConferenceListener>());
     }
     
     public static OngoingConferenceTracker getInstance() {

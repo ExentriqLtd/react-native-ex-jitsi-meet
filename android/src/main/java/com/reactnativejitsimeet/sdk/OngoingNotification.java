@@ -1,8 +1,8 @@
 // 
-// These are decompiled files from the jitsi meet sdk modify these files only if it is extremely necessary.
+// Decompiled by Procyon v0.5.36
 // 
 
-package org.jitsi.meet.sdk;
+package com.reactnativejitsimeet.sdk;
 
 import java.util.Random;
 import androidx.annotation.StringRes;
@@ -13,7 +13,9 @@ import android.app.Notification;
 import android.content.Context;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+
+import com.reactnativejitsimeet.R;
+import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import android.os.Build;
 
 class OngoingNotification
@@ -31,12 +33,12 @@ class OngoingNotification
             JitsiMeetLogger.w(OngoingNotification.TAG + " Cannot create notification channel: no current context", new Object[0]);
             return;
         }
-        final NotificationManager notificationManager = (NotificationManager)context.getSystemService("notification");
+        final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel channel = notificationManager.getNotificationChannel("JitsiOngoingConferenceChannel");
         if (channel != null) {
             return;
         }
-        channel = new NotificationChannel("JitsiOngoingConferenceChannel", (CharSequence)context.getString(R.string.ongoing_notification_action_unmute), 3);
+        channel = new NotificationChannel("JitsiOngoingConferenceChannel", (CharSequence)context.getString(R.string.ongoing_notification_action_unmute), NotificationManager.IMPORTANCE_DEFAULT);
         channel.enableLights(false);
         channel.enableVibration(false);
         channel.setShowBadge(false);
@@ -50,12 +52,12 @@ class OngoingNotification
             return null;
         }
         final Intent notificationIntent = new Intent(context, (Class)context.getClass());
-        final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 67108864);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "JitsiOngoingConferenceChannel");
         if (OngoingNotification.startingTime == 0L) {
             OngoingNotification.startingTime = System.currentTimeMillis();
         }
-        builder.setCategory("call").setContentTitle((CharSequence)context.getString(R.string.ongoing_notification_title)).setContentText((CharSequence)context.getString(R.string.ongoing_notification_text)).setPriority(0).setContentIntent(pendingIntent).setOngoing(true).setWhen(OngoingNotification.startingTime).setUsesChronometer(true).setAutoCancel(false).setVisibility(1).setOnlyAlertOnce(true).setSmallIcon(context.getResources().getIdentifier("ic_notification", "drawable", context.getPackageName()));
+        builder.setCategory("call").setContentTitle((CharSequence)context.getString(R.string.ongoing_notification_title)).setContentText((CharSequence)context.getString(R.string.ongoing_notification_text)).setPriority(0).setContentIntent(pendingIntent).setOngoing(true).setWhen(OngoingNotification.startingTime).setUsesChronometer(true).setAutoCancel(false).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setOnlyAlertOnce(true).setSmallIcon(context.getResources().getIdentifier("ic_notification", "drawable", context.getPackageName()));
         final NotificationCompat.Action hangupAction = createAction(context, JitsiMeetOngoingConferenceService.Action.HANGUP, R.string.ongoing_notification_action_hang_up);
         final JitsiMeetOngoingConferenceService.Action toggleAudioAction = isMuted ? JitsiMeetOngoingConferenceService.Action.UNMUTE : JitsiMeetOngoingConferenceService.Action.MUTE;
         final int toggleAudioTitle = isMuted ? R.string.ongoing_notification_action_unmute : R.string.ongoing_notification_action_mute;
@@ -72,7 +74,7 @@ class OngoingNotification
     private static NotificationCompat.Action createAction(final Context context, final JitsiMeetOngoingConferenceService.Action action, @StringRes final int titleId) {
         final Intent intent = new Intent(context, (Class)JitsiMeetOngoingConferenceService.class);
         intent.setAction(action.getName());
-        final PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 67108864);
+        final PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         final String title = context.getString(titleId);
         return new NotificationCompat.Action(0, (CharSequence)title, pendingIntent);
     }
