@@ -44,12 +44,12 @@ public class JitsiMeetConferenceOptions implements Parcelable
     }
     
     private JitsiMeetConferenceOptions(final Parcel in) {
-       /* this.serverURL = (URL)in.readSerializable();
+        this.serverURL = (URL)in.readSerializable();
         this.room = in.readString();
         this.token = in.readString();
         this.config = in.readBundle();
         this.featureFlags = in.readBundle();
-        this.userInfo = new JitsiMeetUserInfo(in.readBundle());*/
+        this.userInfo = new JitsiMeetUserInfo(in.readBundle());
     }
     
     Bundle asProps() {
@@ -201,7 +201,8 @@ public class JitsiMeetConferenceOptions implements Parcelable
         }
         
         public JitsiMeetConferenceOptions build() {
-            final JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions(null);
+            Parcel parcel = Parcel.obtain();
+            final JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions(parcel);
             options.serverURL = this.serverURL;
             options.room = this.room;
             options.token = this.token;

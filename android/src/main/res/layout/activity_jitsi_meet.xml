@@ -4,9 +4,9 @@
     android:id="@+id/jitsi_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExJitsiMeetActivity">
+    tools:context="org.jitsi.meet.sdk.JitsiMeetActivity">
 
-    <com.reactnativejitsimeet.ExJitsiMeetView
+    <org.jitsi.meet.sdk.JitsiMeetView
         android:id="@+id/jitsiView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

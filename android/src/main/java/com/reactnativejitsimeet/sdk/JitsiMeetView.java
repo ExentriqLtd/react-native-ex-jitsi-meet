@@ -38,21 +38,21 @@ public class JitsiMeetView extends FrameLayout
         for (final String key : b.keySet()) {
             final Object bValue = b.get(key);
             final Object aValue = a.get(key);
-            final String valueType = bValue.getClass().getSimpleName();
-            if (valueType.contentEquals("Boolean")) {
-                result.putBoolean(key, (boolean)bValue);
-            }
-            else if (valueType.contentEquals("String")) {
-                result.putString(key, (String)bValue);
-            }
-            else if (valueType.contentEquals("Integer")) {
-                result.putInt(key, (int)bValue);
-            }
-            else {
-                if (!valueType.contentEquals("Bundle")) {
-                    throw new RuntimeException("Unsupported type: " + valueType);
+            System.out.println("bValue:::" + bValue);
+            if (bValue != null) {
+                final String valueType = bValue.getClass().getSimpleName();
+                if (valueType.contentEquals("Boolean")) {
+                    result.putBoolean(key, (boolean)bValue);
+                } else if (valueType.contentEquals("String")) {
+                    result.putString(key, (String)bValue);
+                } else if (valueType.contentEquals("Integer")) {
+                    result.putInt(key, (int)bValue);
+                } else {
+                    if (!valueType.contentEquals("Bundle")) {
+                        throw new RuntimeException("Unsupported type: " + valueType);
+                    }
+                    result.putBundle(key, mergeProps((Bundle)aValue, (Bundle)bValue));
                 }
-                result.putBundle(key, mergeProps((Bundle)aValue, (Bundle)bValue));
             }
         }
         return result;

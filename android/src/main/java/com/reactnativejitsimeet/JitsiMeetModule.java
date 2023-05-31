@@ -8,12 +8,10 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
-import com.reactnativejitsimeet.sdk.JitsiMeet;
-import com.reactnativejitsimeet.sdk.JitsiMeetActivity;
-import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
-import com.reactnativejitsimeet.sdk.JitsiMeetUserInfo;
+import org.jitsi.meet.sdk.JitsiMeet;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class JitsiMeetModule extends ReactContextBaseJavaModule {
@@ -32,7 +30,20 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
         Log.d("domain::", domain);
         Log.d("roomName::", roomName);
         try {
-            JitsiMeetUserInfo _userInfo = new JitsiMeetUserInfo();
+            URL _url = new URL(domain);
+            JitsiMeetConferenceOptions defaultOptions
+                    = new JitsiMeetConferenceOptions.Builder()
+                    .setServerURL(_url)
+                    .setFeatureFlag("welcomepage.enabled", false)
+                    .build();
+            JitsiMeet.setDefaultConferenceOptions(defaultOptions);
+            JitsiMeetConferenceOptions options
+                    = new JitsiMeetConferenceOptions.Builder()
+                    .setRoom(roomName)
+                    .build();
+            JitsiMeetActivity.launch(this.getReactApplicationContext(), options);
+
+            /*JitsiMeetUserInfo _userInfo = new JitsiMeetUserInfo();
             if (userInfo != null) {
                 if (userInfo.hasKey("displayName")) {
                     _userInfo.setDisplayName(userInfo.getString("displayName"));
@@ -66,7 +77,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
                     .setAudioOnly(meetOptions.hasKey("audioOnly") ? meetOptions.getBoolean("audioOnly") : false)
                     .setVideoMuted(meetOptions.hasKey("videoMuted") ? meetOptions.getBoolean("videoMuted") : false)
                     .setUserInfo(_userInfo)
-                    .setFeatureFlag("add-people.enabled", meetFeatureFlags.hasKey("addPeopleEnabled") ? meetFeatureFlags.getBoolean("addPeopleEnabled") : true)
+                    /*.setFeatureFlag("add-people.enabled", meetFeatureFlags.hasKey("addPeopleEnabled") ? meetFeatureFlags.getBoolean("addPeopleEnabled") : true)
                     .setFeatureFlag("calendar.enabled", meetFeatureFlags.hasKey("calendarEnabled") ?meetFeatureFlags.getBoolean("calendarEnabled") : true)
                     .setFeatureFlag("call-integration.enabled", meetFeatureFlags.hasKey("callIntegrationEnabled") ?meetFeatureFlags.getBoolean("callIntegrationEnabled") : true)
                     .setFeatureFlag("chat.enabled", meetFeatureFlags.hasKey("chatEnabled") ?meetFeatureFlags.getBoolean("chatEnabled") : true)
@@ -89,7 +100,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
                     .setFeatureFlag("welcomepage.enabled", meetFeatureFlags.hasKey("welcomePageEnabled") ?meetFeatureFlags.getBoolean("welcomePageEnabled") : false)
                     .setFeatureFlag("prejoinpage.enabled", meetFeatureFlags.hasKey("prejoinPageEnabled") ?meetFeatureFlags.getBoolean("prejoinPageEnabled") : false)
                     .build();
-            JitsiMeetActivity.launch(this.getReactApplicationContext(), options);
+            JitsiMeetActivity.launch(this.getReactApplicationContext(), options);*/
             callBack.invoke("ExJitsiMeetActivity", "CONFERENCE_LAUNCH");
         } catch (Exception e) {
             Log.d("Error::", e.getMessage());

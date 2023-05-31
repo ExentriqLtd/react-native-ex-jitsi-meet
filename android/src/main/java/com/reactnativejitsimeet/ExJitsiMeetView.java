@@ -1,16 +1,16 @@
 package com.reactnativejitsimeet;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
 import com.facebook.react.modules.core.PermissionListener;
-import com.reactnativejitsimeet.sdk.JitsiMeetActivityInterface;
-import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
-import com.reactnativejitsimeet.sdk.JitsiMeetView;
+
+import org.jitsi.meet.sdk.JitsiMeetActivityInterface;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetView;
 
 public class ExJitsiMeetView extends View implements JitsiMeetActivityInterface {
     JitsiMeetView view;

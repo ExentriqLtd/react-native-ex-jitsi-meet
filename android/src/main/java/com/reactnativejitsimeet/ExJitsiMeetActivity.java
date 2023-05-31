@@ -10,14 +10,6 @@ import java.util.HashMap;
 import android.net.Uri;
 
 import com.reactnativejitsimeet.R;
-import com.reactnativejitsimeet.sdk.BroadcastEvent;
-import com.reactnativejitsimeet.sdk.BroadcastIntentHelper;
-import com.reactnativejitsimeet.sdk.JitsiMeetActivityDelegate;
-import com.reactnativejitsimeet.sdk.JitsiMeetActivityInterface;
-import com.reactnativejitsimeet.sdk.JitsiMeetConferenceOptions;
-import com.reactnativejitsimeet.sdk.JitsiMeetOngoingConferenceService;
-import com.reactnativejitsimeet.sdk.JitsiMeetView;
-import com.reactnativejitsimeet.sdk.log.JitsiMeetLogger;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.os.Bundle;
@@ -30,6 +22,15 @@ import android.content.BroadcastReceiver;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.jitsi.meet.sdk.BroadcastEvent;
+import org.jitsi.meet.sdk.BroadcastIntentHelper;
+import org.jitsi.meet.sdk.JitsiMeetActivityDelegate;
+import org.jitsi.meet.sdk.JitsiMeetActivityInterface;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService;
+import org.jitsi.meet.sdk.JitsiMeetView;
+import org.jitsi.meet.sdk.log.JitsiMeetLogger;
 
 
 public class ExJitsiMeetActivity extends AppCompatActivity implements JitsiMeetActivityInterface {
