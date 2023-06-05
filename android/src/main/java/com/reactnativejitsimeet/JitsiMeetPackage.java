@@ -13,14 +13,13 @@ public class JitsiMeetPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> views = new ArrayList<>();
-        views.add(new ExJitsiMeetViewManager());
         return views;
     }
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new JitsiMeetModule(reactContext));
+        modules.add(JitsiMeetModule.getInstance(reactContext));
         return modules;
     }
 }
