@@ -4,8 +4,8 @@
         <activity
             android:name="com.reactnativejitsimeet.MyJitsiMeetActivity"
             android:label="My Jitsi Meet Activity"
-            android:launchMode="standard"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         </activity>
     </application>
 </manifest>

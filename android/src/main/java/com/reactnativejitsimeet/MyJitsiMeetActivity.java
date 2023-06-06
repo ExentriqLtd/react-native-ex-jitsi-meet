@@ -4,11 +4,15 @@ package com.reactnativejitsimeet;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+
+import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.UiThreadUtil;
 
 import java.util.HashMap;
@@ -19,19 +23,38 @@ import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 public class MyJitsiMeetActivity extends JitsiMeetActivity {
 
     public static void launch2(Context context, JitsiMeetConferenceOptions options, Callback _callback) {
-        UiThreadUtil.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(context, MyJitsiMeetActivity.class);
-                intent.setAction("org.jitsi.meet.CONFERENCE");
-                intent.putExtra("JitsiMeetConferenceOptions", options);
-                if (!(context instanceof Activity)) {
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                }
-                context.startActivity(intent);
-            }
-        });
+        Intent intent = new Intent(context, MyJitsiMeetActivity.class);
+        intent.setAction("org.jitsi.meet.CONFERENCE");
+        intent.putExtra("JitsiMeetConferenceOptions", options);
+        if (!(context instanceof Activity)) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_custom_jitsi);
+    }
+
+
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.jitsi_menu, menu);
+        return true;
+    }*/
+
+   /* @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.addmembers) {
+            return true;
+        } else if (itemId == R.id.chat) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
 
     @Override
     public void onBackPressed() {

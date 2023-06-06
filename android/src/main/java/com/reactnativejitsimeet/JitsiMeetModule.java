@@ -114,7 +114,6 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
     public void endCall() {
         try {
             Log.d("END-CALL", "START");
-            this.getCurrentActivity().finish();
         } catch (Exception e) {
             Log.d("Error::", e.getMessage());
         }
