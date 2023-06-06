@@ -104,7 +104,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
                     .setFeatureFlag("prejoinpage.enabled", meetFeatureFlags.hasKey("prejoinPageEnabled") ?meetFeatureFlags.getBoolean("prejoinPageEnabled") : false)
                     .build();
 
-            MyJitsiMeetActivity.launch2(this.getCurrentActivity(), options, this.callbackMainConferenceTerminated);
+            MyJitsiMeetActivity.launch2(this.getReactApplicationContext(), options, this.callbackMainConferenceTerminated);
         } catch (Exception e) {
             Log.d("Error::", e.getMessage());
         }
