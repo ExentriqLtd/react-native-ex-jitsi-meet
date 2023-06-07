@@ -5,10 +5,10 @@
        android:title="add members"
         android:id="@+id/addmembers"
         android:icon="@drawable/baseline_group_add_24"
-        app:showAsAction="ifRoom|always" />
+        app:showAsAction="always" />
     <item
         android:title="chat"
         android:id="@+id/chat"
         android:icon="@drawable/baseline_chat_bubble_outline_24"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>
